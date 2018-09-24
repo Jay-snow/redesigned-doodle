@@ -1,0 +1,74 @@
+
+
+
+#wrapper {
+	border:1px solid black;
+	width:800px;
+	height:800px;
+	margin:0 auto;
+	background-color:white;
+}
+	body {
+		background-color:black;
+	}
+
+
+/**Main Earthbound Style Textbox **/
+	#textBox {
+		border:4px solid black;
+		border-radius:30px;
+		width:700px;
+		height:150px;
+		margin:0px auto;
+		margin-top:0.5%;
+	}
+
+	@font-face{
+    font-family: "EBMain";
+    src: url('EBMain.ttff'),
+    url('EBMain.ttf'); /* IE */
+}
+
+	/** Font styling for text in Earthbound Style Textbox **/
+	#runningText, #builtText {
+		margin-left:10px;
+		font-size:3em;
+		margin-top:0px;
+		font-family: EBMain, Helvetica, Arial, sans-serif;
+	}
+
+
+	 li.combatChoice {
+		display:inline-block;
+		font-family: EBMain, Helvetica, Arial, sans-serif;
+		font-size:48px;
+		margin-right:10px;
+
+	}
+
+	li.combatChoice:hover {
+		background-color:blue;
+		cursor:pointer;
+	}
+
+	/** Temporary CSS for a go button. Might remove button altogether I dunno **/
+	#button {
+		margin:0 auto;
+		width:100px;
+		border:1px solid black;
+		margin-top:10px;
+		cursor:pointer;
+	}
+	/** Makes the pre-completed text invisible at the start **/
+	#builtText {
+		visibility:hidden;
+	}
+
+/** Health Bar CSS **/
+
+#healthbox {
+	margin:0 auto;
+	height:100px;
+	width:75px;
+	border:1px solid black;
+}
