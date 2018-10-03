@@ -5,7 +5,7 @@
                   "@It's hard to program every night at 8-9PM eh?",
                   "@You've come really far"
                   ]
-	sceneCount = -1; //iterates through a scene
+	sceneCount = -0; //iterates through a scene. Controlled by spacebar or clicking the "Go" Button.
     
 
     messageSkip = false;
@@ -13,31 +13,38 @@
     setupString = ""
     writeMessage(setupString);
 
-	//writeMessage(dialogueText[0]); //This starts the game, oddly enough. Where should this be?
+	writeMessage(dialogueText[0]); //This starts the game, oddly enough. Where should this be?
 
 	/** writeMessage function will write out the text RPG style **/
 	  function writeMessage(string) {
 	  	runningText.innerHTML = "";  //Prepare for write by empyting box and resetting timer.
+        
 	    var i = 0, intervalId;
 	    messageRunTime = (string.length * textSpeed); // Calculate how long it will take for the string to write. Used to tell if text should auto-complete or skip to next dialogue.
 	    messageRunTimer = 0; 
 	    intervalId = window.setInterval(function() {
+
+            if (messageRunTimer >= messageRunTime) {
+                arrow_down.style.visibility = "visible";
+            } 
+
 	        runningText.innerHTML += string.charAt(i++);
 	        messageRunTimer += textSpeed;
 	        if (i > string.length || messageSkip == true) 
 	            window.clearInterval(intervalId); 
 	      }, textSpeed);
+
 	    builtText.innerHTML = string; //Make a pre-built version of the text in case the user skips.
     }
 
    
 
     /**Move Forward in Dialogue && Advance the scene **/
-
+     /**Checks to see if player skips cutscene, or if it ends naturally **/
     	
 
     	function sceneIncrement(sceneName) {
-    		//If the message is done OR the player has chosen to skip, advance the diagloue.
+    		//If the message is done and the player advances the dialogue, advance the scene.
     		if (messageRunTimer >= messageRunTime || messageSkip == true) {
     		sceneCount += 1;
 
@@ -46,6 +53,7 @@
     		messageSkip = false;
     		runningText.style.display = "block";
     		builtText.style.visibility = "hidden";
+            arrow_down.style.visibility = "hidden";
     	} else
 
     		//If the message is NOT done, skip to the end.
@@ -53,6 +61,7 @@
     			runningText.style.display = "none";
     			builtText.style.visibility = "visible";
     			messageSkip = true;
+                arrow_down.style.visibility = "visible";
     		}
     	}
 
@@ -102,5 +111,5 @@
 hp.innerHTML = health + "/10";
 }
 
-combatOptionsDisplay();
+//combatOptionsDisplay();
 
